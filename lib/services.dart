@@ -23,5 +23,44 @@ Future<void> screen({
       context,
     ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
-} 
-Stream<QuerySnapshot>fetchstudent(){return FirebaseFirestore.instance.collection("Datas").snapshots();}
+}
+
+Stream<QuerySnapshot> fetchstudent() {
+  return FirebaseFirestore.instance.collection("Datas").snapshots();
+}
+
+Future<void> deletestudent(String ID, BuildContext context) async {
+  try {
+    await FirebaseFirestore.instance.collection("Datas").doc(ID).delete();
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Deleted Succesfully")));
+  } catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(e.toString())));
+  }
+}
+
+Future<void> editstudent(
+  String ID,
+  String username,
+  String email,
+  String phonenumber,
+  BuildContext context,
+) async {
+  try {
+    await FirebaseFirestore.instance.collection("Datas").doc(ID).update({
+      "Name": username,
+      "Email": email,
+      "phonenumber": phonenumber,
+    });
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Edited Succesfully")));
+  } catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(e.toString())));
+  }
+}

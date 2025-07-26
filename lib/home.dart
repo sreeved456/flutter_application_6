@@ -99,14 +99,111 @@ class _HomeState extends State<Home> {
             );
           }
           final studentdata = snapshot.data!.docs;
-          return ListView.builder(itemCount: studentdata.length,
+          return ListView.builder(
+            itemCount: studentdata.length,
             itemBuilder: (context, Index) {
               return ListTile(
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(icon: Icon(Icons.delete), onPressed: () {}),
-                    IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        deletestudent(studentdata[Index].id, context);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        namecontroller.text = studentdata[Index]["Name"];
+                        emailcontroller.text = studentdata[Index]["Email"];
+                        phonenumbercontroller.text =
+                            studentdata[Index]["phonenumber"];
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Column(
+                              children: [
+                                TextFormField(
+                                  controller: namecontroller,
+                                  decoration: InputDecoration(
+                                    fillColor: const Color.fromARGB(
+                                      255,
+                                      230,
+                                      137,
+                                      253,
+                                    ),
+                                    filled: true,
+                                    label: Text(
+                                      "Name",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 12),
+                                TextFormField(
+                                  controller: phonenumbercontroller,
+                                  decoration: InputDecoration(
+                                    fillColor: const Color.fromARGB(
+                                      255,
+                                      230,
+                                      136,
+                                      253,
+                                    ),
+                                    filled: true,
+                                    label: Text(
+                                      "Phone Number",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 12),
+                                TextFormField(
+                                  controller: emailcontroller,
+                                  decoration: InputDecoration(
+                                    fillColor: const Color.fromARGB(
+                                      255,
+                                      230,
+                                      131,
+                                      255,
+                                    ),
+                                    filled: true,
+                                    label: Text(
+                                      "Email",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 12),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    editstudent(
+                                      studentdata[Index].id,
+                                      namecontroller.text,
+                                      emailcontroller.text,
+                                      phonenumbercontroller.text,
+                                      context,
+                                    );
+                                  },
+                                  child: Text(
+                                    "Elevated",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ],
                 ),
                 title: Text(studentdata[Index]['Name']),
