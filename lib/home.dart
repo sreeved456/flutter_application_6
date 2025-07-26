@@ -127,12 +127,7 @@ class _HomeState extends State<Home> {
                                 TextFormField(
                                   controller: namecontroller,
                                   decoration: InputDecoration(
-                                    fillColor: const Color.fromARGB(
-                                      255,
-                                      230,
-                                      137,
-                                      253,
-                                    ),
+                                    fillColor: const Color.fromARGB(255, 103, 97, 105),
                                     filled: true,
                                     label: Text(
                                       "Name",
@@ -146,12 +141,7 @@ class _HomeState extends State<Home> {
                                 TextFormField(
                                   controller: phonenumbercontroller,
                                   decoration: InputDecoration(
-                                    fillColor: const Color.fromARGB(
-                                      255,
-                                      230,
-                                      136,
-                                      253,
-                                    ),
+                                    fillColor: const Color.fromARGB(255, 144, 140, 145),
                                     filled: true,
                                     label: Text(
                                       "Phone Number",
@@ -165,12 +155,7 @@ class _HomeState extends State<Home> {
                                 TextFormField(
                                   controller: emailcontroller,
                                   decoration: InputDecoration(
-                                    fillColor: const Color.fromARGB(
-                                      255,
-                                      230,
-                                      131,
-                                      255,
-                                    ),
+                                    fillColor: const Color.fromARGB(255, 138, 135, 139),
                                     filled: true,
                                     label: Text(
                                       "Email",
